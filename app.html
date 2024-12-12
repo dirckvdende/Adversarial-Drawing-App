@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/main.css">
+    <title>Adversarial Drawing App</title>
+</head>
+<body>
+    <div id="drawing-app" class="center-container">
+        <div>
+            <h1>Adversarial Drawing App</h1>
+            <h2>1. What to do</h2>
+            <p>
+                Below you find a black box where you can make your drawing, as
+                well as the prompt you need to draw. If you feel like you're
+                done with your drawing, you can click that option below.
+                Alternatively, you can make more drawings of different prompts
+                if you'd like, these will all be saved and added to the final
+                results screen. <b>Please make sure to fill in the form at the
+                end, and attach your results!</b> It is recommended to draw on a
+                computer, not a mobile device.
+            </p>
+            <p>
+                Your goal is to draw the image in such a way that the prompt
+                could be identified by another human who only sees the end
+                result. However, if the AI recognized the image, your last
+                stroke will be undone!
+            </p>
+            <h2>2. Let's Draw!</h2>
+            <p>
+                Make your drawing in the box below by dragging your mouse. Draw
+                the following word: <b><span id="prompt-word">LOADING...</span>.
+                <a href="javascript:void(0);" id="undo-button">Undo last
+                stroke</a></b>
+            </p>
+            <div id="drawing-container">
+                <canvas id="drawing-canvas"></canvas>
+            </div>
+            <h2>3. I'm done drawing</h2>
+            <p>
+                <b><a href="javascript:void(0);" id="results-screen-button">Continue to results screen</a></b> (After this you will
+                not be able to go back)
+            </p>
+            <p>
+                <b><a href="javascript:void(0);" id="new-prompt-button">Get a new prompt</a></b>
+            </p>
+        </div>
+    </div>
+    <div id="results-screen" class="center-container" style="display: none;">
+        <h1 class="print-invisible">Results</h1>
+        <p class="print-invisible">
+            Please fill out the form at the bottom of the page!
+        </p>
+        <h1 class="print-only">Adversarial Drawing App Result</h1>
+        <p class="print-only">
+            Below are the drawings you made with their prompt words. The graphs
+            on the right represent the similarity the AI saw between your
+            drawing and the prompt word. Please submit this file in the form
+            when asked. <b>By submitting, you give us permission to use and
+            publish the drawings and everything else in this document.</b>
+        </p>
+        <div id="results-card-container"></div>
+        <h2 class="print-invisible">Form</h2>
+        <p class="print-invisible">
+            The link below brings you to a form with some questions about our
+            app. One of the questions asks you to upload your results. Please
+            download this page by
+            <b><a href="javascript:window.print();">clicking here</a></b> and
+            selecting the option to print to PDF.
+        </p>
+        <p>
+            <b><a href="https://forms.gle/noTkxrksSNF14kFP6" target="_blank" rel="noopener noreferrer">Go to the form</a></b>
+        </p>
+    </div>
+    <script type="module" src="src/app.js"></script>
+    <script>
+        window.onbeforeunload = function() {
+            return "If you leave this page, data will be lost. Are you sure?";
+        };
+    </script>
+</body>
+</html>
