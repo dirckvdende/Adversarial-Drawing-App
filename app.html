@@ -37,6 +37,13 @@
                 <a href="javascript:void(0);" id="undo-button">Undo last
                 stroke</a></b>
             </p>
+            <script>
+                window.addEventListener("keydown", function(event) {
+                    var eventObject = window.event ? window.event : event;
+                    if (eventObject.ctrlKey && eventObject.keyCode == 90)
+                        document.getElementById("undo-button").click();
+                });
+            </script>
             <div id="drawing-container">
                 <canvas id="drawing-canvas"></canvas>
             </div>
@@ -64,15 +71,17 @@
             publish the drawings and everything else in this document.</b>
         </p>
         <div id="results-card-container"></div>
-        <h2 class="print-invisible">Form</h2>
+        <h2 class="print-invisible">Download Results & Form</h2>
         <p class="print-invisible">
-            The link below brings you to a form with some questions about our
-            app. One of the questions asks you to upload your results. Please
-            download this page by
-            <b><a href="javascript:window.print();">clicking here</a></b> and
-            selecting the option to print to PDF.
+            <b>Please download this page by clicking below and selecting
+            the option to print to PDF. Then go to the form using the second
+            link. You will submit the results file in the form.</b>
         </p>
-        <p>
+        <p class="print-invisible">
+            <b><a href="javascript:window.print();">Download results</a></b>
+            (select the option to print to PDF)
+        </p>
+        <p class="print-invisible">
             <b><a href="https://forms.gle/noTkxrksSNF14kFP6" target="_blank" rel="noopener noreferrer">Go to the form</a></b>
         </p>
     </div>
