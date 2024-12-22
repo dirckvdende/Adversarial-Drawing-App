@@ -14,6 +14,7 @@ const canvas = document.getElementById("drawing-canvas");
 const undoThreshold = 0.001;
 
 let prompt = null;
+let possiblePrompts = Array.from(promptWords);
 let scoreHistory = [];
 let promptHistory = [];
 
@@ -59,7 +60,12 @@ function saveDrawing() {
 }
 
 function generatePrompt() {
-    prompt = promptWords[Math.floor(Math.random() * promptWords.length)];
+    if (possiblePrompts.length == 0)
+        possiblePrompts = Array.from(promptWords);
+    console.log(possiblePrompts);
+    let index = Math.floor(Math.random() * possiblePrompts.length);
+    prompt = possiblePrompts[index];
+    possiblePrompts.splice(index, 1);
     promptSpan.innerText = prompt.toUpperCase();
 }
 
