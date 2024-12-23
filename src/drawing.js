@@ -73,7 +73,6 @@ function drawLine(pos) {
 function eventPos(e, isTouch) {
     if (isTouch) {
         let bcr = e.target.getBoundingClientRect();
-        console.log(e);
         return [e.targetTouches[0].clientX - bcr.x, e.targetTouches[0].clientY -
         bcr.y];
     }

@@ -40,6 +40,8 @@ document.getElementById("new-prompt-button").addEventListener("click", () => {
 });
 canvas.addEventListener("mouseup", processStrokeEnd);
 canvas.addEventListener("mouseleave", processStrokeEnd);
+canvas.addEventListener("touchend", processStrokeEnd);
+canvas.addEventListener("touchcancel", processStrokeEnd);
 
 function processStrokeEnd() {
     getProbability(getImageData(), prompt).then((p) => {
