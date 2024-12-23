@@ -70,20 +70,39 @@ function drawLine(pos) {
     prevPos = pos;
 }
 
-canvas.addEventListener("mousedown", (e) => {
+function eventPos(e, isTouch) {
+    if (isTouch) {
+        let bcr = e.target.getBoundingClientRect();
+        console.log(e);
+        return [e.targetTouches[0].clientX - bcr.x, e.targetTouches[0].clientY -
+        bcr.y];
+    }
+    return [e.offsetX, e.offsetY];
+}
+
+function startDrawing(e, isTouch) {
     isDrawing = true;
     pushUndoHistory();
-    drawDot([e.offsetX, e.offsetY]);
-});
-canvas.addEventListener("mousemove", (e) => {
+    drawDot(eventPos(e, isTouch));
+    e.preventDefault();
+}
+canvas.addEventListener("mousedown", (e) => startDrawing(e, false));
+canvas.addEventListener("touchstart", (e) => startDrawing(e, true));
+function mouseMove(e, isTouch) {
     if (isDrawing) {
-        drawLine([e.offsetX, e.offsetY]);
-        drawDot([e.offsetX, e.offsetY]);
+        let pos = eventPos(e, isTouch);
+        drawLine(pos);
+        drawDot(pos);
+        e.preventDefault();
     }
-});
-canvas.addEventListener("mouseup", () => {
+}
+canvas.addEventListener("mousemove", (e) => mouseMove(e, false));
+canvas.addEventListener("touchmove", (e) => mouseMove(e, true));
+function endDrawing(e) {
     isDrawing = false;
-});
-canvas.addEventListener("mouseleave", () => {
-    isDrawing = false;
-});
+    e.preventDefault();
+}
+canvas.addEventListener("mouseup", endDrawing);
+canvas.addEventListener("mouseleave", endDrawing);
+canvas.addEventListener("touchend", endDrawing);
+canvas.addEventListener("touchcancel", endDrawing);
